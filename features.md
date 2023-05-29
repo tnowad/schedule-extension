@@ -46,4 +46,3 @@ This document outlines the features of the Schedule Extension, sorted in order o
 - [ ] Responsive design for different screen sizes
 - [ ] Localization support for multiple languages
 - [ ] Screen reader compatibility and accessibility improvements
-
