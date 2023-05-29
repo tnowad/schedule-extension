@@ -1,36 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
-import { ManifestV3Export, crx } from "@crxjs/vite-plugin";
+import { crx, ManifestV3Export } from "@crxjs/vite-plugin";
 import manifest from "./manifest.json";
+import svgr from "vite-plugin-svgr";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    svgr(),
     react(),
-    svgr({
-      svgrOptions: {
-        icon: true,
-        // ...svgr options (https://react-svgr.com/docs/options/)
-      },
-    }),
-    // Build Chrome Extension
-    crx({ manifest } as {
-      manifest: ManifestV3Export;
-    }),
+    crx({ manifest: manifest as unknown as ManifestV3Export }),
   ],
-  build: {
-    // dont minify the code
-    minify: false,
-  },
-  resolve: {
-    alias: {
-      "@src": "/src",
-      "@components": "/src/components",
-      "@stores": "/src/stores",
-      "@utils": "/src/utils",
-      "@assets": "/src/assets",
-      "@backgroundScripts": "/src/backgroundScripts",
-    },
-  },
 });
